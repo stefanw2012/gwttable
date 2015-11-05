@@ -1,10 +1,9 @@
 package com.swtools.gwttable.client.core.header.item;
 
-import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.swtools.gwttable.client.core.header.HeaderCell;
 
-public class TableHeader extends FlowPanel implements HeaderCell {
+public class TableHeader extends HeaderCell  {
 
 	private String text, tooltip;
 	private Integer factorWidth;
