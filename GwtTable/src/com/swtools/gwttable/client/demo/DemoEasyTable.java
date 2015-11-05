@@ -11,6 +11,8 @@ public class DemoEasyTable extends DemoScreen {
 	public DemoEasyTable() {
 		
 		Table table = new Table();
+		table.setWidth("30%");
+		table.setHeight("50%");
 		
 		ArrayList<HeaderCell> header = new ArrayList<HeaderCell>();
 		header.add(new TableHeader("Column1",25));
