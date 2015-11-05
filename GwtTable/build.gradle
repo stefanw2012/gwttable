@@ -10,12 +10,19 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
+sourceSets {
+	main {
+		java {
+			srcDir 'src'
+		}
+	}
+}
+
 /**
  * Eclipse Projekteinstellungen mit GWT erzwingen
  */
 eclipse {
     project {
-        natures 'org.eclipse.jdt.groovy.core.groovyNature'
         natures 'com.google.gwt.eclipse.core.gwtNature'
         buildCommand 'com.google.gdt.eclipse.core.webAppProjectValidator'
         buildCommand 'com.google.gwt.eclipse.core.gwtProjectValidator'
