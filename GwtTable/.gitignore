@@ -1,6 +1,7 @@
 # Created by https://www.gitignore.io
-war/btflatbuilder
+war/gwttable
 .svn
+.settings
 
 ### Eclipse ###
 *.pydevproject
