@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module rename-to='gwttable'>
+	<inherits name="com.google.gwt.resources.Resources" />
 	<inherits name="com.allen_sauer.gwt.log.gwt-log-DEBUG" />
 	<source path='client' />
 </module>
