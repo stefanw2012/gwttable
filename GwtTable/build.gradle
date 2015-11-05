@@ -1,0 +1,91 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'maven'
+//apply plugin: 'idea'
+
+targetCompatibility = 1.6
+sourceCompatibility = 1.6
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+/**
+ * Eclipse Projekteinstellungen mit GWT erzwingen
+ */
+eclipse {
+    project {
+        natures 'org.eclipse.jdt.groovy.core.groovyNature'
+        natures 'com.google.gwt.eclipse.core.gwtNature'
+        buildCommand 'com.google.gdt.eclipse.core.webAppProjectValidator'
+        buildCommand 'com.google.gwt.eclipse.core.gwtProjectValidator'
+    }
+    classpath {
+        containers 'com.google.gwt.eclipse.core.GWT_CONTAINER'
+        defaultOutputDir = new File(project.getProjectDir().getAbsolutePath() + "/war/WEB-INF/classes");
+    }
+}
+
+/* Anpassung des Projektes als UTF-8 */
+eclipseJdt << {
+    File f = file('.settings/org.eclipse.core.resources.prefs')
+    f.write('eclipse.preferences.version=1\n')
+    f.append('encoding/<project>=utf-8')
+}
+
+
+/** Nexus Artifakt repositorie Location*/
+repositories {
+    maven { url maven }
+}
+
+
+
+/** Abhaengigkeiten zur Lauf und Compilezeit */
+dependencies {
+    runtime 'com.google.gwt:gwt-servlet:' + gwtVersion
+    compile 'com.google.gwt:gwt-user:' + gwtVersion,
+			'com.google.gwt:gwt-dev:' + gwtVersion,
+			'com.allen-sauer.gwt.log:gwt-log:3.3.2'
+}
+
+
+/** GWT Compiler */
+task compileGwt(dependsOn: [classes], type: JavaExec) {
+    buildDir = "${project.buildDir}/war"
+
+    inputs.source sourceSets.main.java.srcDirs
+    inputs.dir sourceSets.main.output.resourcesDir
+    outputs.dir buildDir
+
+
+    doFirst {
+        file(buildDir).mkdirs()
+    }
+
+    main = 'com.google.gwt.dev.Compiler'
+
+    classpath {
+        [
+                sourceSets.main.java.srcDirs, // Java source
+                sourceSets.main.output.resourcesDir, // Generated resources
+                sourceSets.main.output.classesDir, // Generated classes
+                sourceSets.main.compileClasspath, // Deps
+        ]
+    }
+
+    args =
+            [
+                    'de.bt.flatbuilder.BTFlatBuilder', // Your GWT module
+                    '-war', buildDir,
+                    '-logLevel', 'INFO',
+                    '-localWorkers', '2',
+                    '-compileReport',
+                    //'-extra', extraDir,
+                    // '-draftCompile' // Speeds up compile with 25%
+            ]
+    //Xmx = '2048M'
+    maxHeapSize = '2048M'
+}
+
+
