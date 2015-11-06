@@ -19,6 +19,7 @@ public class DemoEasyTable extends DemoScreen {
 		header.add(new TableHeader("Column with Tooltip", "Yes it is a tooltip", 75));
 		table.setHeader(header);
 		
+		
 		add(table);
 	}
 }

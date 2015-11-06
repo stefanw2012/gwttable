@@ -13,8 +13,8 @@ public class Column extends Composite {
 		initWidget(view);
 	}
 
-	public void setHeaderCell(HeaderCell cell, double doubleValue) {
-		controller.setHeaderCell(cell, doubleValue);
+	public void setHeaderCell(HeaderCell cell, double doubleValue, int headerHeight) {
+		controller.setHeaderCell(cell, doubleValue, headerHeight);
 	}
 	
 }

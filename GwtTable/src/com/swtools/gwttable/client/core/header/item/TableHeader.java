@@ -2,6 +2,7 @@ package com.swtools.gwttable.client.core.header.item;
 
 import com.google.gwt.user.client.ui.Label;
 import com.swtools.gwttable.client.core.header.HeaderCell;
+import com.swtools.gwttable.client.core.style.StyleTable;
 
 public class TableHeader extends HeaderCell  {
 
@@ -33,6 +34,11 @@ public class TableHeader extends HeaderCell  {
 		}
 		Label lbl = new Label(text);
 		add(lbl);
+		
+		
+		addStyleName(StyleTable.HEADER_PANEL);
+		lbl.addStyleName(StyleTable.HEADER_LABEL);
+		
 	}
 
 	@Override

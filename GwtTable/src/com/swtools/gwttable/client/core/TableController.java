@@ -15,7 +15,7 @@ public class TableController {
 		this.view = view;
 	}
 
-	public void setHeader(ArrayList<HeaderCell> header) {
+	public void setHeader(ArrayList<HeaderCell> header, int headerHeight) {
 		Integer width = new Integer(0);
 		for (HeaderCell cell : header) {
 			width += cell.getFactorWidth() != null ? cell.getFactorWidth() : 50;
@@ -27,7 +27,7 @@ public class TableController {
 			BigDecimal cellFactor = new BigDecimal(cell.getFactorWidth() != null ? cell.getFactorWidth() : 50);
 			BigDecimal pc = oneFactor.multiply(cellFactor).setScale(2, RoundingMode.HALF_UP);
 			
-			column.setHeaderCell(cell, pc.doubleValue());
+			column.setHeaderCell(cell, pc.doubleValue(), headerHeight);
 			view.add(column);
 		}
 		

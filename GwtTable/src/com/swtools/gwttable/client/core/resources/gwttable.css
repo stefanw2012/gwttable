@@ -1,6 +1,18 @@
-@external .table-border;
+@external .table-border, .table-header-panel, .table-header-lbl;
 
 .table-border {
 	border: 1px solid gray;
 	background-color: #ffffff;
 }
+
+.table-header-panel {
+	background-color: #000000;
+    border-left: 1px solid #FFFFFF;
+    height: 100%;
+}
+
+.table-header-lbl {
+	color: #FFFFFF;
+    padding-left: 10px;
+}
+

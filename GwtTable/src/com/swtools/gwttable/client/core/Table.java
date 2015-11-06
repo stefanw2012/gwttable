@@ -9,6 +9,7 @@ import com.swtools.gwttable.client.core.header.HeaderCell;
 public class Table extends Composite {
 
 	private TableController controller;
+	private int headerHeight;
 
 	public Table() {
 		TableView view = new TableView();
@@ -17,9 +18,23 @@ public class Table extends Composite {
 		initWidget(view);
 	}
 
+	/**
+	 * Set the headeritems with a default height of 30px
+	 * @param header
+	 */
 	public void setHeader(ArrayList<HeaderCell> header) {
-		controller.setHeader(header);
+		setHeader(header, 30);
 	}
+	
+	/**
+	 * Set the headeritems and set the headerheight
+	 * @param header
+	 * @param headerHeight
+	 */
+	public void setHeader(ArrayList<HeaderCell> header, int headerHeight) {
+		controller.setHeader(header, headerHeight);
+	}
+
 	
 	
 }
